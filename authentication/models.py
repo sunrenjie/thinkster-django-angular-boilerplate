@@ -1,5 +1,3 @@
-from django.db import models
-
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 
@@ -27,10 +25,8 @@ class AccountManager(BaseUserManager):
         return account
 
 
-
-
 class Account(AbstractBaseUser):
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True, max_length=75)
     username = models.CharField(max_length=40, unique=True)
 
     first_name = models.CharField(max_length=40, blank=True)
