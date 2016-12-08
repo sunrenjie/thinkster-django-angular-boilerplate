@@ -40,7 +40,10 @@ class AccountViewSet(viewsets.ModelViewSet):
 
 class LoginView(views.APIView):
     def post(self, request, format=None):
-        data = json.loads(request.body)
+        # To convert request.body to json; works under Python 2 and 3; see also:
+        # http://stackoverflow.com/questions/29514077/get-request-body-as-string-in-django
+        body_unicode = request.body.decode('utf-8')
+        data = json.loads(body_unicode)
         email = data.get('email', None)
         password = data.get('password', None)
 
