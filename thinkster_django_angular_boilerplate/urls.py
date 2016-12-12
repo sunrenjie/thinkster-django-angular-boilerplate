@@ -13,11 +13,10 @@ accounts_router = routers.NestedSimpleRouter(router, r'accounts', lookup='accoun
 accounts_router.register(r'posts', AccountPostsViewSet)
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url('^api/v1/', include(router.urls)),
     url('^api/v1/', include(accounts_router.urls)),
     url('^api/v1/auth/login/$', LoginView.as_view(), name='login'),
     url('^api/v1/auth/logout/$', LogoutView.as_view(), name='logout'),
     url('^.*$', IndexView.as_view(), name='index'),
-)
+]
